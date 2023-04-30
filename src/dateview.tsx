@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import arrow from "./assets/images/icon-arrow.svg";
 import "./date.css";
 const MainView = () => {
