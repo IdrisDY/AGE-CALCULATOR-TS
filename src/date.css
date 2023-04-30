@@ -1,0 +1,98 @@
+.datespan {
+   color: red;
+   width: 100%;
+ text-align: start;
+ }
+ 
+ .outlineRed{
+   outline: 1px solid red
+ }
+ 
+ .container {
+   width: 70%;
+   margin: 0 auto;
+   padding-top: 10%;
+ 
+   
+ }
+ .content{
+   display: flex;
+   flex-direction: column;
+   gap: 2em;
+   padding: 1em 2em;
+   position: relative;
+ background-color:hsl(0, 0%, 100%) ;
+ }
+ .text-container{
+   display: flex;
+   width: 85%;
+   justify-content:space-between ;
+   gap: 1em;
+   flex-wrap: wrap
+ }
+ .line{
+   background-color:  black;
+   width:100% ;
+ }
+ .btn
+ {
+   all: unset;
+   padding: 1em;
+   margin-left: auto;
+   border-radius: 50%;
+  background-color: hsl(259, 100%, 65%);
+  display: flex;
+  position: absolute;
+  right: 2em;
+ top: 7em;
+
+ }
+ .inputcon{
+   display: flex;
+   flex-direction: column;
+ }
+ .dash{
+ background-color: hsl(259, 100%, 65%);
+height: 25px;
+width: 70px;
+display: block;
+transform: skewX(-20deg);
+ }
+ .time-text{
+   font-size: 5em;
+   color: black;
+   font-weight: 700;
+   font-style: italic;
+   }
+
+   .text-contain{
+     display: flex;
+     gap: 1.3em;
+     align-items: center;
+      }
+
+ .dateinput{
+   width: 100px;
+   height: 100px;
+   flex-direction: column;
+   outline : 1px black ;
+   font-size: 5rem;
+   min-height: 100px;
+ }
+ 
+ 
+ @media(max-width:768px){
+   .text-container{
+ flex-direction: column;
+ width: 100%;
+ }
+ .container{
+   width: 90%;
+ 
+  }
+  .btn{
+  position: static;
+  margin-right: auto;
+  }
+ 
+ }
