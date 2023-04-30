@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import arrow from "./assets/images/icon-arrow.svg";
-import './date.css'
+import "./date.css";
 const MainView = () => {
   const [ageLoad, setAgeLoad] = useState({
     day: null,
@@ -12,11 +12,17 @@ const MainView = () => {
     month: "",
     year: "",
   });
-  const [error, setError] = useState("");
+  const [result, setResult] = useState({
+    day: "",
+    month: "",
+    year: "",
+  });
+
+  const [showResult, setShowResult] = useState(false);
 
   function handleInputChange(value: number, load: string) {
     setAgeLoad({ ...ageLoad, [load]: value });
-
+    setShowResult(false);
     if (load === "month" && value >= 1 && value <= 12) {
       setErrorMessage({ ...errorMessage, month: "" });
     }
@@ -49,9 +55,6 @@ const MainView = () => {
     ) {
       setErrorMessage({ ...errorMessage, year: "" });
     }
-    // if (value !== null   ) {
-    //    setErrorMessage({...errorMessage , [load]: ''});
-    // }
   }
 
   function handleGetAge() {
@@ -59,25 +62,16 @@ const MainView = () => {
       setErrorMessage({ ...errorMessage, day: "This field is required" });
       console.log(errorMessage);
     }
-    // else {
-    //   setErrorMessage({ ...errorMessage, day:'' });
-    // }
 
     if (ageLoad.month === "") {
       setErrorMessage({ ...errorMessage, month: "This field is required" });
       console.log(errorMessage);
     }
-    //  else {
-    //   setErrorMessage({ ...errorMessage, month: '' });
-    // }
 
     if (ageLoad.year === "") {
       setErrorMessage({ ...errorMessage, year: "This field is required" });
       console.log(errorMessage);
     }
-    // else {
-    //   setErrorMessage({ ...errorMessage, year: '' });
-    // }
 
     if (!ageLoad.day && !ageLoad.month && !ageLoad.year) {
       console.log("need to be complete");
@@ -86,10 +80,42 @@ const MainView = () => {
         month: "This field is required",
         year: "This field is required",
       });
-      setError("all");
     } else {
       console.log("I can see you my friend");
     }
+
+    if (
+      errorMessage.day === "" &&
+      errorMessage.month === "" &&
+      errorMessage.year === "" &&
+      ageLoad.day &&
+      ageLoad.month &&
+      ageLoad.year
+    ) {
+      setShowResult(true);
+      const currentDate = new Date();
+      const myDate = `${ageLoad.month}/${ageLoad.day}/${ageLoad.year}`;
+      const formatDate = new Date(myDate);
+      const ageInMilliseconds = currentDate.getTime() - formatDate.getTime();
+
+      // calculate number of years
+      const ageInYears = ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25);
+      const years = Math.floor(ageInYears);
+
+      // calculate number of months
+      const months = Math.floor((ageInYears - years) * 12);
+
+      // calculate number of days
+      const days = Math.floor((ageInYears - years - months / 12) * 365.25);
+
+      console.log(`${years} years, ${months} months, ${days} days`);
+      setResult({
+        day: days.toString(),
+        month: months.toString(),
+        year: years.toString(),
+      });
+    }
+    console.log(ageLoad, errorMessage);
   }
 
   const inputStyle = {
@@ -111,7 +137,7 @@ const MainView = () => {
               type="number"
               placeholder="DD"
               style={inputStyle}
-              className={errorMessage.day !== '' ? 'outlineRed':'' }
+              className={errorMessage.day !== "" ? "outlineRed" : ""}
               onChange={(e) =>
                 handleInputChange(parseInt(e.target.value), "day")
               }
@@ -125,7 +151,7 @@ const MainView = () => {
               type="number"
               placeholder="MM"
               style={inputStyle}
-              className={errorMessage.month !== '' ? 'outlineRed':'' }
+              className={errorMessage.month !== "" ? "outlineRed" : ""}
               onChange={(e) =>
                 handleInputChange(parseInt(e.target.value), "month")
               }
@@ -141,7 +167,7 @@ const MainView = () => {
               type="number"
               placeholder="YYYY"
               style={inputStyle}
-              className={errorMessage.year !== '' ? 'outlineRed':'' }
+              className={errorMessage.year !== "" ? "outlineRed" : ""}
               onChange={(e) =>
                 handleInputChange(parseInt(e.target.value), "year")
               }
@@ -158,14 +184,44 @@ const MainView = () => {
           </button>
         </div>
 
-<div>
-
-<div className="text-contain" > <span className="dash" > </span> <span className="dash"> </span> <span className="time-text"> years</span> </div>
-<div className="text-contain" > <span className="dash" > </span> <span className="dash"> </span> <span className="time-text"> months</span> </div>
-<div className="text-contain" > <span className="dash" > </span> <span className="dash"> </span> <span className="time-text"> days</span> </div>
-
-</div>
-
+        <div>
+          <div className="text-contain">
+            {" "}
+            {showResult ? (
+              <span className="age-no"> {result.year} </span>
+            ) : (
+              <>
+                <span className="dash"> </span>
+                <span className="dash"> </span>{" "}
+              </>
+            )}
+            <span className="time-text"> years</span>{" "}
+          </div>
+          <div className="text-contain">
+            {" "}
+            {showResult ? (
+              <span className="age-no"> {result.month} </span>
+            ) : (
+              <>
+                <span className="dash"> </span>
+                <span className="dash"> </span>{" "}
+              </>
+            )}
+            <span className="time-text"> months</span>{" "}
+          </div>
+          <div className="text-contain">
+            {" "}
+            {showResult ? (
+              <span className="age-no"> {result.year} </span>
+            ) : (
+              <>
+                <span className="dash"> </span>
+                <span className="dash"> </span>{" "}
+              </>
+            )}
+            <span className="time-text"> days</span>{" "}
+          </div>
+        </div>
       </div>
     </div>
   );

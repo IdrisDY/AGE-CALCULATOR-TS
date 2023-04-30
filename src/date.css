@@ -58,6 +58,23 @@ width: 70px;
 display: block;
 transform: skewX(-20deg);
  }
+ .age-no{
+   font-size: 5em;
+   font-weight: 700;
+   color: hsl(259, 100%, 65%);
+   animation: slide .7s;
+   }
+   @keyframes slide{
+      from{
+         opacity: 0;
+         transform: translateX(100%);
+      }
+      to{
+         opacity: 1;
+         transform: translateX(0%);
+
+      }
+   }
  .time-text{
    font-size: 5em;
    color: black;
@@ -94,5 +111,16 @@ transform: skewX(-20deg);
   position: static;
   margin-right: auto;
   }
+  .time-text{
+   font-size: 2.2em;
+   max-width: 50%;
+   }
+   .dash{
+     height: 20px;
+     width: 40px;
+     max-width: 50%;
+
+      }
+     
  
  }
