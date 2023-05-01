@@ -118,16 +118,6 @@ const MainView = () => {
     console.log(ageLoad, errorMessage);
   }
 
-  const inputStyle = {
-    width: "150px",
-    height: "80px",
-    borderRadius: "10px",
-    border: ".4px solid grey",
-    fontSize: "2.5rem",
-    color: "hsl(0, 1%, 44%)",
-    paddingInline: ".5em",
-  };
-
   return (
     <div className="container">
       <div className="content">
@@ -136,8 +126,9 @@ const MainView = () => {
             <input
               type="number"
               placeholder="DD"
-              style={inputStyle}
-              className={errorMessage.day !== "" ? "outlineRed" : ""}
+              className={` inputStyle ${
+                errorMessage.day !== "" ? "outlineRed" : ""
+              }`}
               onChange={(e) =>
                 handleInputChange(parseInt(e.target.value), "day")
               }
@@ -150,8 +141,9 @@ const MainView = () => {
             <input
               type="number"
               placeholder="MM"
-              style={inputStyle}
-              className={errorMessage.month !== "" ? "outlineRed" : ""}
+              className={` inputStyle ${
+                errorMessage.month !== "" ? "outlineRed" : ""
+              }`}
               onChange={(e) =>
                 handleInputChange(parseInt(e.target.value), "month")
               }
@@ -166,8 +158,9 @@ const MainView = () => {
             <input
               type="number"
               placeholder="YYYY"
-              style={inputStyle}
-              className={errorMessage.year !== "" ? "outlineRed" : ""}
+              className={` inputStyle ${
+                errorMessage.year !== "" ? "outlineRed" : ""
+              }`}
               onChange={(e) =>
                 handleInputChange(parseInt(e.target.value), "year")
               }
@@ -175,8 +168,6 @@ const MainView = () => {
             <span className="datespan">{errorMessage.year}</span>
           </div>
         </div>
-
-        <hr className="line" />
 
         <div>
           <button className="btn" onClick={handleGetAge}>
@@ -188,38 +179,46 @@ const MainView = () => {
           <div className="text-contain">
             {" "}
             {showResult ? (
-              <span className="age-no"> {result.year} </span>
+              <span className="age-no1"> {result.year} </span>
             ) : (
               <>
                 <span className="dash"> </span>
                 <span className="dash"> </span>{" "}
               </>
             )}
-            <span className="time-text"> years</span>{" "}
+            <span className="time-text">
+              {result.year === "1" ? "year" : "years"}
+            </span>{" "}
           </div>
           <div className="text-contain">
             {" "}
             {showResult ? (
-              <span className="age-no"> {result.month} </span>
+              <span className="age-no2"> {result.month} </span>
             ) : (
               <>
                 <span className="dash"> </span>
                 <span className="dash"> </span>{" "}
               </>
             )}
-            <span className="time-text"> months</span>{" "}
+            <span className="time-text">
+              {" "}
+              {result.month === "1" ? "month" : "months"}{" "}
+            </span>{" "}
           </div>
           <div className="text-contain">
             {" "}
             {showResult ? (
-              <span className="age-no"> {result.year} </span>
+              <span className="age-no3"> {result.day} </span>
             ) : (
               <>
                 <span className="dash"> </span>
                 <span className="dash"> </span>{" "}
               </>
             )}
-            <span className="time-text"> days</span>{" "}
+            <span className="time-text">
+              {" "}
+              {result.day === "1" ? "day" : "days"}
+            </span>{" "}
           </div>
         </div>
       </div>
