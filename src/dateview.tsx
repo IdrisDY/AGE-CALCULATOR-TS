@@ -170,6 +170,7 @@ const MainView = () => {
         </div>
 
         <div>
+        <hr />
           <button className="btn" onClick={handleGetAge}>
             <img src={arrow} alt="get age button" />
           </button>
