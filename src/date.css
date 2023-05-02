@@ -37,6 +37,17 @@ font-size: smaller;
    background-color:  black;
    width:100% ;
  }
+ .age-container{
+  margin-top: -1.5em;
+}
+
+ label{
+color:hsl(0, 1%, 44%) ;
+text-align: start;
+font-weight: bold;
+font-size: .6em;
+}
+
  hr{
   background-color: hsl(0, 0%, 86%) ;
   width:100% ;
@@ -141,7 +152,7 @@ transform: skewX(-10deg);
    padding-top: 20%;
   }
   .content{
-    padding: .8em;
+    padding: 1.5em .8em;
     gap: 0;
 border-bottom-right-radius: 30%;   }
  
@@ -164,13 +175,14 @@ font-size: 3rem;    }
   .time-text{
    font-size: 2.8rem;
    max-width: 50%;
+   font-weight: bolder;
    }
    .text-contain{
 gap: .6em;
     }
  
    .dash{
-     height: 15px;
+     height: 10px;
      width: 25px;
      max-width: 50%;
 

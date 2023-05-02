@@ -123,7 +123,10 @@ const MainView = () => {
       <div className="content">
         <div className="text-container">
           <div className="inputcon">
+
+            <label htmlFor="day"> DAY </label>
             <input
+            id="day"
               type="number"
               placeholder="DD"
               className={` inputStyle ${
@@ -138,7 +141,10 @@ const MainView = () => {
           </div>
 
           <div className="inputcon">
+          <label htmlFor="month"> MONTH </label>
+
             <input
+            id="month"
               type="number"
               placeholder="MM"
               className={` inputStyle ${
@@ -155,7 +161,9 @@ const MainView = () => {
           </div>
 
           <div className="inputcon">
+            <label htmlFor="year">YEAR</label>
             <input
+            id="year"
               type="number"
               placeholder="YYYY"
               className={` inputStyle ${
@@ -176,7 +184,7 @@ const MainView = () => {
           </button>
         </div>
 
-        <div>
+        <div className="age-container" >
           <div className="text-contain">
             {" "}
             {showResult ? (
