@@ -27,8 +27,7 @@ const MainView = () => {
       setErrorMessage({ ...errorMessage, month: "" });
     }
     if (load === "month" && (value > 12 || value < 1)) {
-      console.log("invalid month");
-      setErrorMessage({ ...errorMessage, month: "Must be a valid Month" });
+      setErrorMessage({ ...errorMessage, month: "Must be a valid month" });
     }
 
     if (load === "day" && (value >= 1 || value <= 31)) {
@@ -36,17 +35,15 @@ const MainView = () => {
     }
 
     if (load === "day" && (value > 31 || value < 1)) {
-      console.log("invalid day");
-      setErrorMessage({ ...errorMessage, day: "Must be a valid Day" });
+      setErrorMessage({ ...errorMessage, day: "Must be a valid day" });
     }
     const currentYear = new Date().getFullYear();
 
     if (load === "year" && value.toString().length !== 4) {
-      setErrorMessage({ ...errorMessage, year: "Must be a valid Year" });
-      console.log("invalid year");
+      setErrorMessage({ ...errorMessage, year: "Must be a valid year" });
     }
     if (load === "year" && value > currentYear) {
-      setErrorMessage({ ...errorMessage, year: "Must be in the Past" });
+      setErrorMessage({ ...errorMessage, year: "Must be in the past" });
     }
     if (
       load === "year" &&
@@ -60,29 +57,23 @@ const MainView = () => {
   function handleGetAge() {
     if (ageLoad.day === "") {
       setErrorMessage({ ...errorMessage, day: "This field is required" });
-      console.log(errorMessage);
     }
 
     if (ageLoad.month === "") {
       setErrorMessage({ ...errorMessage, month: "This field is required" });
-      console.log(errorMessage);
     }
 
     if (ageLoad.year === "") {
       setErrorMessage({ ...errorMessage, year: "This field is required" });
-      console.log(errorMessage);
     }
 
     if (!ageLoad.day && !ageLoad.month && !ageLoad.year) {
-      console.log("need to be complete");
       setErrorMessage({
         day: "This field is required",
         month: "This field is required",
         year: "This field is required",
       });
-    } else {
-      console.log("I can see you my friend");
-    }
+    } 
 
     if (
       errorMessage.day === "" &&
@@ -108,14 +99,12 @@ const MainView = () => {
       // calculate number of days
       const days = Math.floor((ageInYears - years - months / 12) * 365.25);
 
-      console.log(`${years} years, ${months} months, ${days} days`);
       setResult({
         day: days.toString(),
         month: months.toString(),
         year: years.toString(),
       });
     }
-    console.log(ageLoad, errorMessage);
   }
 
   return (
@@ -123,10 +112,17 @@ const MainView = () => {
       <div className="content">
         <div className="text-container">
           <div className="inputcon">
-
-            <label htmlFor="day"> DAY </label>
+            <label
+              htmlFor="day"
+              className={` ${
+                errorMessage.day !== "" ? "col-red" : ""
+              }`}
+            >
+              {" "}
+              DAY{" "}
+            </label>
             <input
-            id="day"
+              id="day"
               type="number"
               placeholder="DD"
               className={` inputStyle ${
@@ -141,10 +137,18 @@ const MainView = () => {
           </div>
 
           <div className="inputcon">
-          <label htmlFor="month"> MONTH </label>
+            <label
+              htmlFor="month"
+              className={`  ${
+                errorMessage.month !== "" ? "col-red" : ""
+              }`}
+            >
+              {" "}
+              MONTH{" "}
+            </label>
 
             <input
-            id="month"
+              id="month"
               type="number"
               placeholder="MM"
               className={` inputStyle ${
@@ -161,9 +165,16 @@ const MainView = () => {
           </div>
 
           <div className="inputcon">
-            <label htmlFor="year">YEAR</label>
+            <label
+              htmlFor="year"
+              className={`  ${
+                errorMessage.year !== "" ? "col-red" : ""
+              }`}
+            >
+              YEAR
+            </label>
             <input
-            id="year"
+              id="year"
               type="number"
               placeholder="YYYY"
               className={` inputStyle ${
@@ -177,14 +188,14 @@ const MainView = () => {
           </div>
         </div>
 
-        <div>
-        <hr />
+        <div className="btn-div">
+          <hr />
           <button className="btn" onClick={handleGetAge}>
             <img src={arrow} alt="get age button" />
           </button>
         </div>
 
-        <div className="age-container" >
+        <div className="age-container">
           <div className="text-contain">
             {" "}
             {showResult ? (
